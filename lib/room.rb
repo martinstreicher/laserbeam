@@ -17,6 +17,8 @@ class Room
   end
 
   def fire
+    laser or raise(NoLaserException)
+
     beam = Hashie::Mash.new
     beam.x = laser.x
     beam.y = laser.y

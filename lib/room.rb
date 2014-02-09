@@ -31,7 +31,7 @@ class Room
 
     loop do
       hops += 1
-      (beam.x, beam.y) = optic.effect(previous_optics[-1]).o
+      (beam.x, beam.y) = optic.effect(previous_optics[-1])
       break unless contained?(beam)
       previous_optics.push(optic) unless optic.is_a?(Air)
       optic = grid[beam.x][beam.y]

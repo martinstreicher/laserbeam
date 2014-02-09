@@ -1,3 +1,5 @@
+require 'hashie'
+
 class Room
   LASER = '@'
 
@@ -15,7 +17,23 @@ class Room
   end
 
   def fire
-    grid
+    beam = Hashie::Mash.new
+    beam.x = laser.x
+    beam.y = laser.y
+
+    previous_optic = nil
+    optic = laser
+    hops = 1
+
+    loop do
+      hops += 1
+      (beam.x, beam.y) = optic.effect(previous_optic)
+      previous_optic = optic unless optic.is_a?(Air)
+      break unless contained?(beam)
+      optic = grid[beam.y][beam.x]
+    end
+
+    hops
   end
 
   def height
@@ -34,6 +52,11 @@ class Room
 
     def conform_to_size?(row)
       (row.size == width) or puts("row #{row} is malformed.")
+    end
+
+    def contained?(beam)
+      (beam.x >= 0) && (beam.x < width) &&
+        (beam.y >= 0) && (beam.y < height)
     end
 
     def find_laser
@@ -58,14 +81,14 @@ class Room
         optics.each_with_index do |row, row_index|
           row.each_with_index do |column, column_index|
             optic = optics[row_index][column_index]
-            (lab[row_index] ||= [])[column_index] = OpticFactory.place(optic, row_index, column_index).o
+            (lab[row_index] ||= [])[column_index] = OpticFactory.place(optic, row_index, column_index)
           end
         end
       end
     end
 
     def to_rows(description)
-      rows = description
+      description
         .split("\n")
         .map { |row| scrub row }
         .reject { |row| blank? row }

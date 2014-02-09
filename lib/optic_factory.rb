@@ -6,8 +6,8 @@ class OpticFactory
     'V'  => South,
     '<'  => West,
     '>'  => East,
-    '/'  => Northeast,
-    '\\' => Northwest }
+    '/'  => Northwest,
+    '\\' => Northeast }
 
   def self.place(optic, x, y)
     OPTICS[optic].new x, y

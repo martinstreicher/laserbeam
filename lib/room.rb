@@ -4,21 +4,26 @@ class Room
   NoLaserException = Class.new Exception
   RoomDesignException = Class.new Exception
 
-  attr_accessor :grid, :laser
+  attr_accessor :grid, :laser, :optics
 
   def initialize(description)
-    self.grid = to_grid to_rows(description)
-    self.laser = find_laser
+    self.optics = to_optics to_rows(description)
+    self.grid   = to_room optics
+    self.laser  = find_laser
 
     grid.all? { |row| conform_to_size?(row) } or raise(RoomDesignException)
   end
 
+  def fire
+    grid
+  end
+
   def height
-    @height ||= grid.size
+    @height ||= optics.size
   end
 
   def width
-    @width ||= grid.first.size
+    @width ||= optics.first.size
   end
 
   private
@@ -33,8 +38,8 @@ class Room
 
     def find_laser
       grid.each_with_index do |row, row_index|
-        column_index = row.find_index { |column| column == LASER }
-        column_index and return([row_index, column_index])
+        column_index = row.find_index { |column| column.is_a?(Laser) }
+        column_index and return(grid[row_index][column_index])
       end
 
       nil
@@ -44,8 +49,19 @@ class Room
       string.gsub(/\s+/, '')
     end
 
-    def to_grid(rows)
+    def to_optics(rows)
       rows.map { |row| row.chars }
+    end
+
+    def to_room(optics)
+      Array.new.tap do |lab|
+        optics.each_with_index do |row, row_index|
+          row.each_with_index do |column, column_index|
+            optic = optics[row_index][column_index]
+            (lab[row_index] ||= [])[column_index] = OpticFactory.place(optic, row_index, column_index).o
+          end
+        end
+      end
     end
 
     def to_rows(description)

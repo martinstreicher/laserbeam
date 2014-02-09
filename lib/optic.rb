@@ -20,6 +20,10 @@ class Optic
     [x + alter_x, y + alter_y]
   end
 
+  def to_s
+    OpticFactory::OPTICS.invert[self.class]
+  end
+
   private
 
     def is_an_integer?(value)

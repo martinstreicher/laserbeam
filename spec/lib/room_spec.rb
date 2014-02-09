@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Room do
   let(:r) { "--\n--" }
-  let(:s) { "@---\n----\n-^V/" }
+  let(:s) { "@---\n----\n>---" }
   let(:t) { " <---\n----\n@V--\n" }
   let(:u) { "<<<- \n-  ---\n^V/@   \n" }
   let(:e) { "<<<- \n-  ----\n^V/@   \n" }
@@ -41,13 +41,14 @@ describe Room do
 
   describe 'Instance Methods' do
     describe '#fire' do
+      it { expect(Room.new(s).fire).to eq(6) }
     end
 
     describe '#laser' do
       it { expect(Room.new(r).laser).to be_nil }
-      it { expect(Room.new(s).laser).to eq([0, 0]) }
-      it { expect(Room.new(t).laser).to eq([2, 0]) }
-      it { expect(Room.new(u).laser).to eq([2, 3]) }
+      it { room = Room.new(s); expect([room.laser.x, room.laser.y]).to eq([0, 0]) }
+      it { room = Room.new(t); expect([room.laser.x, room.laser.y]).to eq([2, 0]) }
+      it { room = Room.new(u); expect([room.laser.x, room.laser.y]).to eq([2, 3]) }
     end
   end
 end

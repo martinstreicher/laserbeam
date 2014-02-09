@@ -9,5 +9,6 @@ gem 'faker'
 gem 'guard'
 gem 'guard-rspec'
 gem 'hashie'
+gem 'letters'
 gem 'rspec'
 

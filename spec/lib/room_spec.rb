@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe Room do
-  describe 'Class Methods' do
-    let(:r) { "--\n--" }
-    let(:s) { "<---\n----\n@^V/<" }
-    let(:t) { "<---\n----\n@VV--\n" }
-    let(:t) { "<<<- \n-  ---\n@^V//   \n" }
+  let(:r) { "--\n--" }
+  let(:s) { "@---\n----\n-^V/" }
+  let(:t) { " <---\n----\n@V--\n" }
+  let(:u) { "<<<- \n-  ---\n^V/@   \n" }
+  let(:e) { "<<<- \n-  ----\n^V/@   \n" }
 
+  describe 'Class Methods' do
     describe '.new' do
       it 'creates a 2x2 room' do
         nr = Room.new r
@@ -27,14 +28,24 @@ describe Room do
       end
 
       it 'ignores trailing and leading spaces' do
-        nr = Room.new t
+        nr = Room.new u
         expect(nr.height).to eq(3)
         expect(nr.width).to eq(4)
-       end
+      end
+
+      it 'detects errors in the room spec' do
+        expect { Room.new e }.to raise_exception
+      end
     end
   end
 
   describe 'Instance Methods' do
+    describe '#fire' do
+    end
 
+    describe '#laser' do
+      it { expect { Room.new(r).laser }.to raise_exception }
+      it { expect(Room.new(s).laser).to eq([0, 0]) }
+    end
   end
 end

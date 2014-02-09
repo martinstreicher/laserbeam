@@ -1,3 +1,6 @@
+require 'awesome_print'
+require 'debugger'
+require 'letters'
 require_relative 'lib/laser'
 
 ARGV.each do |arg|

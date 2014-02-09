@@ -1,5 +1,5 @@
 class North < Optic
-  def alter_y
+  def alter_x
     -1
   end
 end

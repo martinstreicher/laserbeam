@@ -1,6 +1,6 @@
 class Northeast < Optic
   def alter_x
-    1
+    -1
   end
 
   def alter_y

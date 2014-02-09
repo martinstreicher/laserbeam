@@ -30,8 +30,8 @@ class Room
     loop do
       hops += 1
       (beam.x, beam.y) = optic.effect(previous_optic)
-      previous_optic = optic unless optic.is_a?(Air)
       break unless contained?(beam)
+      previous_optic = optic unless optic.is_a?(Air)
       optic = grid[beam.y][beam.x]
     end
 
@@ -57,8 +57,8 @@ class Room
     end
 
     def contained?(beam)
-      (beam.x >= 0) && (beam.x < width) &&
-        (beam.y >= 0) && (beam.y < height)
+      (beam.x >= 0) && (beam.x < height) &&
+        (beam.y >= 0) && (beam.y < width)
     end
 
     def find_laser

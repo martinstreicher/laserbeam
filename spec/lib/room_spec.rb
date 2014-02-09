@@ -42,7 +42,7 @@ describe Room do
   describe 'Instance Methods' do
     describe '#fire' do
       it { expect { Room.new(r).fire }.to raise_exception }
-      it { expect(Room.new(s).fire).to eq(6) }
+      it { puts s; expect(Room.new(s).fire).to eq(6) }
     end
 
     describe '#laser' do

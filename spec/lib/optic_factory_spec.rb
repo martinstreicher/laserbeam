@@ -7,8 +7,8 @@ describe OpticFactory do
         o = described_class.place('^', 1, 2)
         expect(o.is_a?(North)).to be_true
         result = o.effect
-        expect(result.first).to eq(1)
-        expect(result.last).to eq(1)
+        expect(result.first).to eq(0)
+        expect(result.last).to eq(2)
       end
     end
   end

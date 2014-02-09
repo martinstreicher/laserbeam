@@ -53,7 +53,7 @@ class Room
     end
 
     def conform_to_size?(row)
-      (row.size == width) or puts("row #{row} is malformed.")
+      (row.size == width) or puts("row #{row.map(&:to_s).join} is malformed.")
     end
 
     def contained?(beam)
@@ -63,7 +63,7 @@ class Room
 
     def find_laser
       grid.each_with_index do |row, row_index|
-        column_index = row.find_index { |column| column.is_a?(Laser) }
+        column_index = row.find_index { |column| column.is_a?(Beam) }
         column_index and return(grid[row_index][column_index])
       end
 

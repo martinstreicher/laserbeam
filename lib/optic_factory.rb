@@ -1,7 +1,7 @@
 class OpticFactory
   OPTICS = {
     '-'  => Air,
-    '@'  => Laser,
+    '@'  => Beam,
     '^'  => North,
     'V'  => South,
     '<'  => West,

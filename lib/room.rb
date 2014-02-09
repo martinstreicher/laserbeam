@@ -14,7 +14,8 @@ class Room
     self.grid   = to_room optics
     self.laser  = find_laser
 
-    grid.all? { |row| conform_to_size?(row) } or raise(RoomDesignException)
+    grid.all? { |row| conform_to_size?(row) } or
+      raise(RoomDesignException)
   end
 
   def fire

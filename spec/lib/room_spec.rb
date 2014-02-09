@@ -44,8 +44,10 @@ describe Room do
     end
 
     describe '#laser' do
-      it { expect { Room.new(r).laser }.to raise_exception }
+      it { expect(Room.new(r).laser).to be_nil }
       it { expect(Room.new(s).laser).to eq([0, 0]) }
+      it { expect(Room.new(t).laser).to eq([2, 0]) }
+      it { expect(Room.new(u).laser).to eq([2, 3]) }
     end
   end
 end

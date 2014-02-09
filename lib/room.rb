@@ -8,22 +8,13 @@ class Room
 
   def initialize(description)
     self.grid = to_grid to_rows(description)
+    self.laser = find_laser
 
     grid.all? { |row| conform_to_size?(row) } or raise(RoomDesignException)
-    laser.nil? and raise(NoLaserException)
   end
 
   def height
     @height ||= grid.size
-  end
-
-  def laser
-    @laser ||= begin
-      grid.each_with_index do |row, row_index|
-        column_index = row.find_index { |column| column == LASER }
-        column_index and break([row_index, column_index])
-      end
-    end
   end
 
   def width
@@ -38,6 +29,15 @@ class Room
 
     def conform_to_size?(row)
       (row.size == width) or puts("row #{row} is malformed.")
+    end
+
+    def find_laser
+      grid.each_with_index do |row, row_index|
+        column_index = row.find_index { |column| column == LASER }
+        column_index and return([row_index, column_index])
+      end
+
+      nil
     end
 
     def scrub(string)

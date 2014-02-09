@@ -5,6 +5,7 @@ class Room
 
   NoLaserException = Class.new Exception
   RoomDesignException = Class.new Exception
+  InfiniteLoopException = Class.new Exception
 
   attr_accessor :grid, :laser, :optics
 
@@ -23,16 +24,17 @@ class Room
     beam.x = laser.x
     beam.y = laser.y
 
-    previous_optic = nil
+    previous_optics = []
     optic = laser
     hops = 0
 
     loop do
       hops += 1
-      (beam.x, beam.y) = optic.effect(previous_optic).o
+      (beam.x, beam.y) = optic.effect(previous_optics[-1]).o
       break unless contained?(beam)
-      previous_optic = optic unless optic.is_a?(Air)
+      previous_optics.push(optic) unless optic.is_a?(Air)
       optic = grid[beam.x][beam.y]
+      raise(InfiniteLoopException) if previous_optics.include?(optic)
     end
 
     hops

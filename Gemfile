@@ -6,6 +6,8 @@ gem 'awesome_print'
 gem 'debugger'
 gem 'factory_girl'
 gem 'faker'
+gem 'guard'
+gem 'guard-rspec'
 gem 'hashie'
 gem 'rspec'
 

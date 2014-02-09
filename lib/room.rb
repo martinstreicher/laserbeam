@@ -25,14 +25,14 @@ class Room
 
     previous_optic = nil
     optic = laser
-    hops = 1
+    hops = 0
 
     loop do
       hops += 1
-      (beam.x, beam.y) = optic.effect(previous_optic)
+      (beam.x, beam.y) = optic.effect(previous_optic).o
       break unless contained?(beam)
       previous_optic = optic unless optic.is_a?(Air)
-      optic = grid[beam.y][beam.x]
+      optic = grid[beam.x][beam.y]
     end
 
     hops

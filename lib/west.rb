@@ -1,0 +1,2 @@
+class West < Optic
+end

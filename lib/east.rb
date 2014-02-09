@@ -1,0 +1,2 @@
+class East < Optic
+end

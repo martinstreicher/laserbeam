@@ -29,5 +29,13 @@ describe Optic do
   end
 
   describe 'Instance Methods' do
+    describe '#effect' do
+      it 'repeats the previous effect by default' do
+        o = double alter_x: 1, alter_y: 2
+        result = subject.effect o
+        expect(result.first).to eq(10)
+        expect(result.last).to eq(20)
+      end
+    end
   end
 end

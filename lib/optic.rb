@@ -8,10 +8,16 @@ class Optic
     self.y = y if valid?(y)
   end
 
-  def effect(previous_effect)
-    new_x = x + previous_effect.alter_x
-    new_y = y + previous_effect.alter_y
-    [new_x, new_y]
+  def alter_x
+    0
+  end
+
+  def alter_y
+    0
+  end
+
+  def effect(previous_effect = nil)
+    [x + alter_x, y + alter_y]
   end
 
   private

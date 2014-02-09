@@ -1,0 +1,2 @@
+class Northeast < Optic
+end

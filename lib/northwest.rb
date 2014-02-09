@@ -1,0 +1,2 @@
+class Northwest < Optic
+end

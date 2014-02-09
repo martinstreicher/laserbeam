@@ -10,10 +10,6 @@ require_relative 'west'
 require_relative 'optic_factory'
 
 class Laser < Optic
-  def alter_x
-    0
-  end
-
   def alter_y
     1
   end

@@ -6,7 +6,12 @@ require_relative 'lib/laser'
 ARGV.each do |arg|
   description = Reader.read arg
   room = Room.new description
-  answer = room.fire
+
+  answer = begin
+    room.fire
+  rescue Room::InfiniteLoopException
+    -1
+  end
 
   puts description
   puts answer

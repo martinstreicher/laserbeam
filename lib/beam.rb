@@ -6,7 +6,7 @@ class Beam < Optic
     self.fired = false
   end
 
-  def alter_x
+  def alter_y
     1
   end
 

@@ -2,12 +2,13 @@ class OpticFactory
   OPTICS = {
     '-'  => Air,
     '@'  => Beam,
+    'O'  => Mirror,
     '^'  => North,
-    'V'  => South,
+    'v'  => South,
     '<'  => West,
     '>'  => East,
-    '/'  => Northwest,
-    '\\' => Northeast }
+    '/'  => Northeast,
+    '\\' => Northwest }
 
   def self.place(optic, x, y)
     OPTICS[optic].new x, y

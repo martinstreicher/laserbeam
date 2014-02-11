@@ -1,4 +1,5 @@
 require_relative 'optic'
+require_relative 'prism'
 require_relative 'beam'
 require_relative 'room'
 require_relative 'air'
@@ -9,5 +10,6 @@ require_relative 'northeast'
 require_relative 'northwest'
 require_relative 'south'
 require_relative 'west'
+
 require_relative 'optic_factory'
 require_relative 'reader'

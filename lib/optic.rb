@@ -1,7 +1,7 @@
 class Optic
   BadCoordinateException = Class.new Exception
 
-  attr_accessor :x, :y
+  attr_accessor :mod_x, :mod_y, :previous_optic, :x, :y
 
   def initialize(x, y)
     self.x = x if valid?(x)
@@ -16,8 +16,13 @@ class Optic
     0
   end
 
-  def effect(previous_effect = nil)
+  def effect(previous_optic = nil)
+    self.previous_optic = previous_optic
     [x + alter_x, y + alter_y]
+  end
+
+  def visited_from?(optic)
+    optic == previous_optic
   end
 
   def to_s

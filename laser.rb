@@ -13,6 +13,6 @@ ARGV.each do |arg|
     -1
   end
 
-  puts description
+  # puts description
   puts answer
 end

@@ -32,10 +32,12 @@ class Room
     loop do
       hops += 1
       (beam.x, beam.y) = optic.effect(previous_optics[-1])
+
       break unless contained?(beam)
-      previous_optics.push(optic) unless optic.is_a?(Air)
+      previous_optics.push(optic)
       optic = grid[beam.x][beam.y]
-      raise(InfiniteLoopException) if previous_optics.include?(optic)
+      # debugger
+      raise(InfiniteLoopException) if optic.visited_from?(previous_optics[-1])
     end
 
     hops

@@ -16,10 +16,10 @@ describe Beam do
         @o = described_class.new 1, 2
       end
 
-      it 'Run 1: initially shoots the beam south' do
-        result = @o.effect previous_optic
-        expect(result.first).to eq(2)
-        expect(result.last).to eq(2)
+      it 'Run 1: initially shoots the beam east' do
+        result = @o.effect nil
+        expect(result.first).to eq(1)
+        expect(result.last).to eq(3)
       end
 
       it 'Run 2: later passes through the beam' do

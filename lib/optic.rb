@@ -4,16 +4,17 @@ class Optic
   attr_accessor :mod_x, :mod_y, :previous_optic, :x, :y
 
   def initialize(x, y)
+    self.mod_x = self.mod_y = 0
     self.x = x if valid?(x)
     self.y = y if valid?(y)
   end
 
   def alter_x
-    0
+    mod_x
   end
 
   def alter_y
-    0
+    mod_y
   end
 
   def effect(previous_optic = nil)
@@ -32,11 +33,13 @@ class Optic
   private
 
     def is_an_integer?(value)
-      value.is_a?(Integer) or raise(BadCoordinateException, "#{value} is not an integer")
+      value.is_a?(Integer) or
+        raise(BadCoordinateException, "#{value} is not an integer")
     end
 
     def is_greater_than_or_equal_to_zero?(value)
-      value >= 0 or raise(BadCoordinateException, "#{value} is not >= 0")
+      value >= 0 or
+        raise(BadCoordinateException, "#{value} is not >= 0")
     end
 
     def valid?(value)

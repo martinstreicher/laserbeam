@@ -2,14 +2,6 @@
 # (e.g. an eastward beam is reflected to the south)
 
 class Northwest < Optic
-  def alter_x
-    mod_x
-  end
-
-  def alter_y
-    mod_y
-  end
-
   def effect(previous_optic)
     self.previous_optic = previous_optic
 

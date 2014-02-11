@@ -2,16 +2,6 @@
 # (and vice versa), and a westward beam to the south (and vice versa).
 
 class Northeast < Optic
-  attr_accessor :mod_x, :mod_y
-
-  def alter_x
-    mod_x
-  end
-
-  def alter_y
-    mod_y
-  end
-
   def effect(previous_optic)
     self.previous_optic = previous_optic
 

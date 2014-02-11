@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Room do
   let(:r) { "--\n--" }
   let(:s) { "@---\n----\n>---" }
-  let(:t) { " <---\n----\n@V--\n" }
-  let(:u) { "<<<- \n-  ---\n^V/@   \n" }
-  let(:e) { "<<<- \n-  ----\n^V/@   \n" }
+  let(:t) { " <---\n----\n@v--\n" }
+  let(:u) { "<<<- \n-  ---\n^v/@   \n" }
+  let(:e) { "<<<- \n-  ----\n^v/@   \n" }
 
   describe 'Class Methods' do
     describe '.new' do
@@ -42,7 +42,7 @@ describe Room do
   describe 'Instance Methods' do
     describe '#fire' do
       it { expect { Room.new(r).fire }.to raise_exception }
-      it { puts s; expect(Room.new(s).fire).to eq(6) }
+      it { puts s; expect(Room.new(s).fire).to eq(4) }
     end
 
     describe '#laser' do

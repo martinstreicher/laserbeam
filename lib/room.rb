@@ -36,7 +36,6 @@ class Room
       break unless contained?(beam)
       previous_optics.push(optic)
       optic = grid[beam.x][beam.y]
-      # debugger
       raise(InfiniteLoopException) if optic.visited_from?(previous_optics[-1])
     end
 
